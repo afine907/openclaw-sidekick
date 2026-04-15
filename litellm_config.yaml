@@ -1,0 +1,21 @@
+model_list:
+  - model_name: claude-3-5-sonnet-20241022
+    litellm_params:
+      model: openai/qianfan-code-latest
+      api_base: https://qianfan.baidubce.com/v2/coding
+      api_key: bce-v3/ALTAKSP-iI7GFAOT47EwOSJKDlz3a/301ccff7d9eb9c21832e4e679c3af1b9896c2ba1
+      supports_function_calling: true
+
+  - model_name: claude-3-5-sonnet
+    litellm_params:
+      model: openai/qianfan-code-latest
+      api_base: https://qianfan.baidubce.com/v2/coding
+      api_key: bce-v3/ALTAKSP-iI7GFAOT47EwOSJKDlz3a/301ccff7d9eb9c21832e4e679c3af1b9896c2ba1
+      supports_function_calling: true
+
+general_settings:
+  master_key: sk-openclaw-proxy
+
+litellm_settings:
+  drop_params: True
+  set_verbose: true
