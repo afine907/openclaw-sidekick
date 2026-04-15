@@ -53,7 +53,7 @@ jobs:
         run: npm ci
 
       - name: 🏗️ Build extension
-        run: node build.js
+        run: node build.cjs
         env:
           NODE_ENV: production
 

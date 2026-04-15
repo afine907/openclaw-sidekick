@@ -3,7 +3,6 @@
   "version": "0.2.0",
   "description": "OpenClaw AI Assistant in browser sidebar - 选中文字快速发送，不离开当前页面",
   "main": "src/background.js",
-  "type": "module",
   "scripts": {
     "test": "vitest",
     "test:run": "vitest run",
