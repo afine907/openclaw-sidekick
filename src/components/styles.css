@@ -435,3 +435,421 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #444;
 }
+/* ===========================================
+   新手引导样式
+   =========================================== */
+
+.onboarding-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.onboarding-card {
+  position: relative;
+  width: 90%;
+  max-width: 480px;
+  background: #1e1e1e;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  overflow: hidden;
+}
+
+.onboarding-skip {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: #666;
+  cursor: pointer;
+}
+
+.onboarding-progress {
+  height: 4px;
+  background: #333;
+}
+
+.onboarding-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #81c784);
+}
+
+.onboarding-content {
+  padding: 32px;
+  text-align: center;
+}
+
+.onboarding-image {
+  font-size: 64px;
+  margin-bottom: 24px;
+}
+
+.onboarding-title {
+  font-size: 20px;
+  color: #e0e0e0;
+  margin-bottom: 12px;
+}
+
+.onboarding-text {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.6;
+}
+
+.onboarding-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: #181818;
+}
+
+.onboarding-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.onboarding-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #444;
+}
+
+.onboarding-dot.active {
+  background: #4caf50;
+}
+
+.onboarding-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.onboarding-btn-secondary {
+  background: transparent;
+  border: 1px solid #444;
+  color: #888;
+}
+
+.onboarding-btn-secondary:disabled {
+  opacity: 0.3;
+}
+
+.onboarding-btn-primary {
+  background: #4caf50;
+  border: none;
+  color: white;
+}
+
+/* 设置向导 */
+.setup-wizard-card {
+  max-width: 520px;
+}
+
+.setup-wizard-title {
+  text-align: center;
+  font-size: 18px;
+  color: #e0e0e0;
+  margin: 20px 0;
+}
+
+.setup-wizard-content {
+  padding: 0 32px 24px;
+}
+
+.setup-field {
+  margin-bottom: 20px;
+}
+
+.setup-field label {
+  display: block;
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+
+.setup-field input,
+.setup-field select {
+  width: 100%;
+  padding: 12px;
+  background: #252525;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #e0e0e0;
+  font-size: 14px;
+}
+
+.setup-field input:focus,
+.setup-field select:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.setup-hint {
+  display: block;
+  font-size: 12px;
+  color: #666;
+  margin-top: 6px;
+}
+
+#connection-test-result.success {
+  color: #4caf50;
+}
+
+#connection-test-result.error {
+  color: #f44336;
+}
+
+.setup-review {
+  background: #252525;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.setup-review h3 {
+  font-size: 14px;
+  color: #aaa;
+  margin: 0 0 12px;
+}
+
+.setup-review-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 13px;
+}
+
+.setup-review-item span {
+  color: #888;
+}
+
+.setup-review-item strong {
+  color: #e0e0e0;
+}
+
+/* 诊断面板 */
+.diagnose-panel {
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.diagnose-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.diagnose-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #e0e0e0;
+}
+
+.diagnose-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.diagnose-btn {
+  padding: 6px 12px;
+  background: #333;
+  border: none;
+  border-radius: 6px;
+  color: #aaa;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.diagnose-btn:hover {
+  background: #444;
+  color: #fff;
+}
+
+.diagnose-section {
+  margin-bottom: 16px;
+}
+
+.diagnose-section h4 {
+  font-size: 13px;
+  color: #888;
+  margin: 0 0 8px;
+}
+
+.diagnose-table {
+  width: 100%;
+  font-size: 12px;
+}
+
+.diagnose-table td {
+  padding: 6px 0;
+  border-bottom: 1px solid #333;
+}
+
+.diagnose-table td:first-child {
+  color: #666;
+}
+
+.diagnose-table td:last-child {
+  color: #e0e0e0;
+  text-align: right;
+}
+
+.diagnose-table .success {
+  color: #4caf50;
+}
+
+.diagnose-table .error {
+  color: #f44336;
+}
+
+.diagnose-logs {
+  max-height: 200px;
+  overflow: hidden;
+  background: #111;
+  border-radius: 6px;
+  margin-top: 12px;
+}
+
+.diagnose-logs.expanded {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.logs-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #222;
+  font-size: 12px;
+  color: #666;
+}
+
+.logs-content {
+  padding: 8px;
+  font-family: monospace;
+  font-size: 11px;
+}
+
+.log-item {
+  display: flex;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.log-time {
+  color: #555;
+}
+
+.log-level {
+  width: 40px;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.log-level.debug { color: #666; }
+.log-level.info { color: #2196f3; }
+.log-level.warn { color: #ff9800; }
+.log-level.error { color: #f44336; }
+
+.log-message {
+  color: #aaa;
+}
+
+/* 网络调试 */
+.network-debugger {
+  background: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.network-debugger-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #252525;
+}
+
+.network-debugger-header h4 {
+  margin: 0;
+  font-size: 14px;
+  color: #e0e0e0;
+}
+
+.network-requests {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.network-request {
+  padding: 10px 16px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+}
+
+.network-request:hover {
+  background: #252525;
+}
+
+.request-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.request-method {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.request-method.get { background: #2196f3; color: white; }
+.request-method.post { background: #4caf50; color: white; }
+.request-method.put { background: #ff9800; color: white; }
+.request-method.delete { background: #f44336; color: white; }
+
+.request-url {
+  flex: 1;
+  color: #aaa;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.request-status {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+}
+
+.request-status.success { background: #1b5e20; color: #81c784; }
+.request-status.error { background: #b71c1c; color: #ef9a9a; }
+.request-status.pending { background: #333; color: #888; }
+
+.request-duration {
+  color: #666;
+  font-size: 11px;
+}
+
+.network-empty {
+  padding: 24px;
+  text-align: center;
+  color: #555;
+  font-size: 13px;
+}
