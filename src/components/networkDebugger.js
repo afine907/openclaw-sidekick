@@ -19,19 +19,19 @@ class NetworkDebugger {
     const originalFetch = window.fetch;
     const self = this;
 
-    window.fetch = async function(...args) {
+    window.fetch = async function (...args) {
       const requestId = `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      const url = typeof args[0] === 'string' ? args[0] : args[0].url;
+      const url = typeof args[0] === "string" ? args[0] : args[0].url;
       const options = args[1] || {};
 
       const requestEntry = {
         id: requestId,
         url,
-        method: options.method || 'GET',
+        method: options.method || "GET",
         headers: options.headers || {},
         body: options.body,
         startTime: Date.now(),
-        status: 'pending'
+        status: "pending",
       };
 
       self.recordRequest(requestEntry);
@@ -41,13 +41,13 @@ class NetworkDebugger {
         const clonedResponse = response.clone();
 
         // 记录响应
-        clonedResponse.text().then(text => {
+        clonedResponse.text().then((text) => {
           self.recordResponse(requestId, {
             status: response.status,
             statusText: response.statusText,
             headers: Object.fromEntries(response.headers.entries()),
             body: text,
-            duration: Date.now() - requestEntry.startTime
+            duration: Date.now() - requestEntry.startTime,
           });
         });
 
@@ -57,7 +57,7 @@ class NetworkDebugger {
           status: 0,
           statusText: error.message,
           error: true,
-          duration: Date.now() - requestEntry.startTime
+          duration: Date.now() - requestEntry.startTime,
         });
         throw error;
       }
@@ -73,7 +73,7 @@ class NetworkDebugger {
   }
 
   recordResponse(requestId, response) {
-    const request = this.requests.find(r => r.id === requestId);
+    const request = this.requests.find((r) => r.id === requestId);
     if (request) {
       Object.assign(request, response);
       this.notifyUpdate();
@@ -81,9 +81,11 @@ class NetworkDebugger {
   }
 
   notifyUpdate() {
-    window.dispatchEvent(new CustomEvent('network:update', {
-      detail: this.requests
-    }));
+    window.dispatchEvent(
+      new CustomEvent("network:update", {
+        detail: this.requests,
+      }),
+    );
   }
 
   // 清空记录
@@ -94,7 +96,7 @@ class NetworkDebugger {
 
   // 获取请求详情
   getRequest(id) {
-    return this.requests.find(r => r.id === id);
+    return this.requests.find((r) => r.id === id);
   }
 
   // 重新发送请求
@@ -104,7 +106,7 @@ class NetworkDebugger {
 
     const options = {
       method: request.method,
-      headers: request.headers
+      headers: request.headers,
     };
 
     if (request.body) {
@@ -156,7 +158,7 @@ class NetworkDebugger {
 
   // 渲染请求列表
   renderRequests() {
-    const container = document.getElementById('network-requests');
+    const container = document.getElementById("network-requests");
     if (!container) return;
 
     if (this.requests.length === 0) {
@@ -164,26 +166,32 @@ class NetworkDebugger {
       return;
     }
 
-    container.innerHTML = this.requests.map(req => {
-      const statusClass = req.status >= 200 && req.status < 300 ? 'success' :
-                         req.status >= 400 ? 'error' : 'pending';
-      const duration = req.duration ? `${req.duration}ms` : '...';
+    container.innerHTML = this.requests
+      .map((req) => {
+        const statusClass =
+          req.status >= 200 && req.status < 300
+            ? "success"
+            : req.status >= 400
+              ? "error"
+              : "pending";
+        const duration = req.duration ? `${req.duration}ms` : "...";
 
-      return `
+        return `
         <div class="network-request" data-id="${req.id}">
           <div class="request-row">
             <span class="request-method ${req.method.toLowerCase()}">${req.method}</span>
             <span class="request-url">${this.truncateUrl(req.url)}</span>
-            <span class="request-status ${statusClass}">${req.status || 'pending'}</span>
+            <span class="request-status ${statusClass}">${req.status || "pending"}</span>
             <span class="request-duration">${duration}</span>
           </div>
         </div>
       `;
-    }).join('');
+      })
+      .join("");
 
     // 绑定点击事件
-    container.querySelectorAll('.network-request').forEach(el => {
-      el.addEventListener('click', () => this.showRequestDetail(el.dataset.id));
+    container.querySelectorAll(".network-request").forEach((el) => {
+      el.addEventListener("click", () => this.showRequestDetail(el.dataset.id));
     });
   }
 
@@ -191,7 +199,7 @@ class NetworkDebugger {
     try {
       const parsed = new URL(url);
       const path = parsed.pathname + parsed.search;
-      return path.length > 40 ? path.slice(0, 40) + '...' : path;
+      return path.length > 40 ? path.slice(0, 40) + "..." : path;
     } catch {
       return url.slice(0, 40);
     }
@@ -208,25 +216,33 @@ class NetworkDebugger {
           <h6>基本信息</h6>
           <pre>URL: ${request.url}
 Method: ${request.method}
-Status: ${request.status || 'pending'}
-Duration: ${request.duration || 'N/A'}ms</pre>
+Status: ${request.status || "pending"}
+Duration: ${request.duration || "N/A"}ms</pre>
         </div>
         <div class="detail-section">
           <h6>请求头</h6>
           <pre>${JSON.stringify(request.headers, null, 2)}</pre>
         </div>
-        ${request.body ? `
+        ${
+          request.body
+            ? `
         <div class="detail-section">
           <h6>请求体</h6>
           <pre>${request.body}</pre>
         </div>
-        ` : ''}
-        ${request.response?.body ? `
+        `
+            : ""
+        }
+        ${
+          request.response?.body
+            ? `
         <div class="detail-section">
           <h6>响应体</h6>
-          <pre>${request.response.body.slice(0, 1000)}${request.response.body.length > 1000 ? '...' : ''}</pre>
+          <pre>${request.response.body.slice(0, 1000)}${request.response.body.length > 1000 ? "..." : ""}</pre>
         </div>
-        ` : ''}
+        `
+            : ""
+        }
         <div class="detail-section">
           <h6>cURL</h6>
           <pre class="curl-command">${this.toCurl(request)}</pre>
@@ -236,8 +252,8 @@ Duration: ${request.duration || 'N/A'}ms</pre>
     `;
 
     // 显示详情弹窗
-    const modal = document.createElement('div');
-    modal.className = 'network-detail-modal';
+    const modal = document.createElement("div");
+    modal.className = "network-detail-modal";
     modal.innerHTML = `
       <div class="modal-content">
         <div class="modal-header">
@@ -250,17 +266,24 @@ Duration: ${request.duration || 'N/A'}ms</pre>
 
     document.body.appendChild(modal);
 
-    modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
-    modal.querySelector('.modal-backdrop')?.addEventListener('click', () => modal.remove());
-    modal.querySelector('.copy-curl')?.addEventListener('click', async (e) => {
+    modal
+      .querySelector(".modal-close")
+      .addEventListener("click", () => modal.remove());
+    modal
+      .querySelector(".modal-backdrop")
+      ?.addEventListener("click", () => modal.remove());
+    modal.querySelector(".copy-curl")?.addEventListener("click", async (e) => {
       await navigator.clipboard.writeText(e.target.dataset.curl);
-      e.target.textContent = '已复制!';
-      setTimeout(() => e.target.textContent = '复制', 2000);
+      e.target.textContent = "已复制!";
+      setTimeout(() => (e.target.textContent = "复制"), 2000);
     });
   }
 
   escapeHtml(text) {
-    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
   }
 }
 

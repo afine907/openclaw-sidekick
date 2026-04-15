@@ -15,10 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 网络调试器 (networkDebugger.js)
 - 日志查看器 (logViewer.js)
 - 错误诊断工具 (diagnose.js)
+- 完整的开源文档 (README, CONTRIBUTING, CHANGELOG, ARCHITECTURE)
+- Vitest 测试框架配置
 
 ### Changed
 - 优化代码块语法高亮
 - 改进消息历史管理
+- 重构主题系统为模块化结构
 
 ### Fixed
 - 修复侧边栏打开延迟问题

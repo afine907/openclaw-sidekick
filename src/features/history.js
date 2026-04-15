@@ -14,7 +14,7 @@ class HistoryManager {
 
   async loadHistory() {
     try {
-      const data = await browser.storage.local.get('history');
+      const data = await browser.storage.local.get("history");
       this.history = data.history || [];
     } catch (e) {
       this.history = [];
@@ -37,7 +37,7 @@ class HistoryManager {
       role: message.role,
       content: message.content,
       marked: false,
-      tags: []
+      tags: [],
     };
     this.history.push(entry);
     await this.saveHistory();
@@ -50,14 +50,14 @@ class HistoryManager {
 
     const lowerQuery = query.toLowerCase();
     return this.history
-      .filter(entry => entry.content.toLowerCase().includes(lowerQuery))
+      .filter((entry) => entry.content.toLowerCase().includes(lowerQuery))
       .reverse()
       .slice(0, 50);
   }
 
   // 标记/取消标记消息
   async toggleMark(id) {
-    const entry = this.history.find(h => h.id === id);
+    const entry = this.history.find((h) => h.id === id);
     if (entry) {
       entry.marked = !entry.marked;
       await this.saveHistory();
@@ -68,7 +68,7 @@ class HistoryManager {
 
   // 添加标签
   async addTag(id, tag) {
-    const entry = this.history.find(h => h.id === id);
+    const entry = this.history.find((h) => h.id === id);
     if (entry && !entry.tags.includes(tag)) {
       entry.tags.push(tag);
       await this.saveHistory();
@@ -77,14 +77,14 @@ class HistoryManager {
 
   // 获取标记的消息
   getMarked() {
-    return this.history.filter(h => h.marked).reverse();
+    return this.history.filter((h) => h.marked).reverse();
   }
 
   // 按日期分组
   getGroupedByDate() {
     const groups = {};
-    this.history.forEach(entry => {
-      const date = new Date(entry.timestamp).toLocaleDateString('zh-CN');
+    this.history.forEach((entry) => {
+      const date = new Date(entry.timestamp).toLocaleDateString("zh-CN");
       if (!groups[date]) groups[date] = [];
       groups[date].push(entry);
     });
@@ -92,22 +92,22 @@ class HistoryManager {
   }
 
   // 导出对话
-  export(format = 'json') {
+  export(format = "json") {
     const data = {
       exportedAt: new Date().toISOString(),
-      version: '1.0',
+      version: "1.0",
       count: this.history.length,
-      messages: this.history
+      messages: this.history,
     };
 
     switch (format) {
-      case 'json':
+      case "json":
         return JSON.stringify(data, null, 2);
 
-      case 'markdown':
+      case "markdown":
         return this.toMarkdown(data);
 
-      case 'txt':
+      case "txt":
         return this.toText(data);
 
       default:
@@ -120,16 +120,16 @@ class HistoryManager {
     md += `导出时间: ${data.exportedAt}\n`;
     md += `消息数量: ${data.count}\n\n---\n\n`;
 
-    let currentDate = '';
-    data.messages.forEach(msg => {
-      const date = new Date(msg.timestamp).toLocaleDateString('zh-CN');
+    let currentDate = "";
+    data.messages.forEach((msg) => {
+      const date = new Date(msg.timestamp).toLocaleDateString("zh-CN");
       if (date !== currentDate) {
         currentDate = date;
         md += `## ${date}\n\n`;
       }
 
-      const time = new Date(msg.timestamp).toLocaleTimeString('zh-CN');
-      const role = msg.role === 'user' ? '👤 用户' : '🤖 AI';
+      const time = new Date(msg.timestamp).toLocaleTimeString("zh-CN");
+      const role = msg.role === "user" ? "👤 用户" : "🤖 AI";
       md += `### ${role} - ${time}\n\n`;
       md += `${msg.content}\n\n`;
     });
@@ -138,18 +138,18 @@ class HistoryManager {
   }
 
   toText(data) {
-    let text = `OpenClaw 对话历史\n${'='.repeat(30)}\n\n`;
+    let text = `OpenClaw 对话历史\n${"=".repeat(30)}\n\n`;
 
-    let currentDate = '';
-    data.messages.forEach(msg => {
-      const date = new Date(msg.timestamp).toLocaleDateString('zh-CN');
+    let currentDate = "";
+    data.messages.forEach((msg) => {
+      const date = new Date(msg.timestamp).toLocaleDateString("zh-CN");
       if (date !== currentDate) {
         currentDate = date;
-        text += `\n${date}\n${'-'.repeat(30)}\n`;
+        text += `\n${date}\n${"-".repeat(30)}\n`;
       }
 
-      const time = new Date(msg.timestamp).toLocaleTimeString('zh-CN');
-      const role = msg.role === 'user' ? '用户' : 'AI';
+      const time = new Date(msg.timestamp).toLocaleTimeString("zh-CN");
+      const role = msg.role === "user" ? "用户" : "AI";
       text += `[${role} ${time}]\n${msg.content}\n\n`;
     });
 

@@ -11,7 +11,7 @@ class KeyboardManager {
   }
 
   init() {
-    document.addEventListener('keydown', (e) => this.handleKeyDown(e));
+    document.addEventListener("keydown", (e) => this.handleKeyDown(e));
   }
 
   /**
@@ -20,8 +20,8 @@ class KeyboardManager {
    * @param {Function} handler - 处理函数
    * @param {string} [description=''] - 描述
    */
-  register(key, handler, description = '') {
-    const combo = key.toLowerCase().replace(/\s+/g, '');
+  register(key, handler, description = "") {
+    const combo = key.toLowerCase().replace(/\s+/g, "");
     this.shortcuts[combo] = { handler, description, key };
   }
 
@@ -30,7 +30,7 @@ class KeyboardManager {
    * @param {string} key - 快捷键组合
    */
   unregister(key) {
-    const combo = key.toLowerCase().replace(/\s+/g, '');
+    const combo = key.toLowerCase().replace(/\s+/g, "");
     delete this.shortcuts[combo];
   }
 
@@ -40,21 +40,26 @@ class KeyboardManager {
    */
   handleKeyDown(e) {
     if (!this.enabled) return;
-    
+
     // 构建快捷键组合
     const parts = [];
-    if (e.ctrlKey) parts.push('ctrl');
-    if (e.altKey) parts.push('alt');
-    if (e.shiftKey) parts.push('shift');
-    if (e.metaKey) parts.push('meta');
-    
+    if (e.ctrlKey) parts.push("ctrl");
+    if (e.altKey) parts.push("alt");
+    if (e.shiftKey) parts.push("shift");
+    if (e.metaKey) parts.push("meta");
+
     const key = e.key.toLowerCase();
-    if (key !== 'control' && key !== 'alt' && key !== 'shift' && key !== 'meta') {
+    if (
+      key !== "control" &&
+      key !== "alt" &&
+      key !== "shift" &&
+      key !== "meta"
+    ) {
       parts.push(key);
     }
-    
-    const combo = parts.join('+');
-    
+
+    const combo = parts.join("+");
+
     if (this.shortcuts[combo]) {
       e.preventDefault();
       this.shortcuts[combo].handler(e);
@@ -66,9 +71,9 @@ class KeyboardManager {
    * @returns {Array} 快捷键列表
    */
   list() {
-    return Object.values(this.shortcuts).map(s => ({
+    return Object.values(this.shortcuts).map((s) => ({
       key: s.key,
-      description: s.description
+      description: s.description,
     }));
   }
 
@@ -88,7 +93,7 @@ class KeyboardManager {
 }
 
 // 导出
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = { KeyboardManager };
 } else {
   window.KeyboardManager = KeyboardManager;

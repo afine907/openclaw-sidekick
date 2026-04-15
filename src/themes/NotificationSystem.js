@@ -12,8 +12,8 @@ class NotificationSystem {
 
   init() {
     // 创建通知容器
-    this.container = document.createElement('div');
-    this.container.className = 'notification-container';
+    this.container = document.createElement("div");
+    this.container.className = "notification-container";
     document.body.appendChild(this.container);
   }
 
@@ -24,8 +24,8 @@ class NotificationSystem {
    * @param {number} [duration=3000] - 显示时长(ms)，0 为不自动关闭
    * @returns {HTMLElement} 通知元素
    */
-  show(message, type = 'info', duration = 3000) {
-    const notification = document.createElement('div');
+  show(message, type = "info", duration = 3000) {
+    const notification = document.createElement("div");
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
       <span class="notification-icon">${this.getIcon(type)}</span>
@@ -36,9 +36,11 @@ class NotificationSystem {
     this.container.appendChild(notification);
 
     // 关闭按钮
-    notification.querySelector('.notification-close').addEventListener('click', () => {
-      this.dismiss(notification);
-    });
+    notification
+      .querySelector(".notification-close")
+      .addEventListener("click", () => {
+        this.dismiss(notification);
+      });
 
     // 自动关闭
     if (duration > 0) {
@@ -47,7 +49,7 @@ class NotificationSystem {
 
     // 动画
     requestAnimationFrame(() => {
-      notification.classList.add('show');
+      notification.classList.add("show");
     });
 
     return notification;
@@ -60,10 +62,10 @@ class NotificationSystem {
    */
   getIcon(type) {
     const icons = {
-      success: '✅',
-      error: '❌',
-      warning: '⚠️',
-      info: 'ℹ️'
+      success: "✅",
+      error: "❌",
+      warning: "⚠️",
+      info: "ℹ️",
     };
     return icons[type] || icons.info;
   }
@@ -73,7 +75,7 @@ class NotificationSystem {
    * @param {HTMLElement} notification - 通知元素
    */
   dismiss(notification) {
-    notification.classList.remove('show');
+    notification.classList.remove("show");
     setTimeout(() => notification.remove(), 300);
   }
 
@@ -81,40 +83,40 @@ class NotificationSystem {
    * 显示成功通知
    */
   success(message, duration) {
-    return this.show(message, 'success', duration);
+    return this.show(message, "success", duration);
   }
 
   /**
    * 显示错误通知
    */
   error(message, duration) {
-    return this.show(message, 'error', duration);
+    return this.show(message, "error", duration);
   }
 
   /**
    * 显示警告通知
    */
   warning(message, duration) {
-    return this.show(message, 'warning', duration);
+    return this.show(message, "warning", duration);
   }
 
   /**
    * 显示信息通知
    */
   info(message, duration) {
-    return this.show(message, 'info', duration);
+    return this.show(message, "info", duration);
   }
 
   /**
    * 关闭所有通知
    */
   clear() {
-    this.container.innerHTML = '';
+    this.container.innerHTML = "";
   }
 }
 
 // 导出
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = { NotificationSystem };
 } else {
   window.NotificationSystem = NotificationSystem;

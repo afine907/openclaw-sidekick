@@ -17,47 +17,47 @@ class Onboarding {
   registerSteps() {
     this.steps = [
       {
-        id: 'welcome',
-        title: '👋 欢迎使用 OpenClaw Sidekick',
-        content: '让 AI 助手常驻浏览器侧边栏，随时随地获取帮助',
-        image: '🎉'
+        id: "welcome",
+        title: "👋 欢迎使用 OpenClaw Sidekick",
+        content: "让 AI 助手常驻浏览器侧边栏，随时随地获取帮助",
+        image: "🎉",
       },
       {
-        id: 'quick-send',
-        title: '⚡ 快速发送选中文字',
-        content: '选中文本 → 右键菜单或快捷键 Ctrl+Shift+S → 立即发送给 AI',
-        image: '📝'
+        id: "quick-send",
+        title: "⚡ 快速发送选中文字",
+        content: "选中文本 → 右键菜单或快捷键 Ctrl+Shift+S → 立即发送给 AI",
+        image: "📝",
       },
       {
-        id: 'sidebar',
-        title: '📐 侧边栏持久显示',
-        content: '点击浏览器右上角扩展图标，或按 Ctrl+Shift+O 打开侧边栏',
-        image: '🔲'
+        id: "sidebar",
+        title: "📐 侧边栏持久显示",
+        content: "点击浏览器右上角扩展图标，或按 Ctrl+Shift+O 打开侧边栏",
+        image: "🔲",
       },
       {
-        id: 'presets',
-        title: '🎯 智能预设提示词',
-        content: '输入 / 触发命令面板，试试 /解释代码 /重构代码 等预设',
-        image: '💡'
+        id: "presets",
+        title: "🎯 智能预设提示词",
+        content: "输入 / 触发命令面板，试试 /解释代码 /重构代码 等预设",
+        image: "💡",
       },
       {
-        id: 'complete',
-        title: '🚀 准备就绪!',
-        content: '有任何问题随时问我。开始享受 AI 助手的便利吧!',
-        image: '🦞'
-      }
+        id: "complete",
+        title: "🚀 准备就绪!",
+        content: "有任何问题随时问我。开始享受 AI 助手的便利吧!",
+        image: "🦞",
+      },
     ];
   }
 
   async checkFirstRun() {
     try {
-      const data = await browser.storage.local.get('onboardingComplete');
+      const data = await browser.storage.local.get("onboardingComplete");
       if (!data.onboardingComplete) {
         // 首次运行，显示引导
         setTimeout(() => this.open(), 1000);
       }
     } catch (e) {
-      console.error('检查首次运行失败:', e);
+      console.error("检查首次运行失败:", e);
     }
   }
 
@@ -70,7 +70,7 @@ class Onboarding {
 
   close() {
     this.isOpen = false;
-    document.getElementById('onboarding-modal')?.remove();
+    document.getElementById("onboarding-modal")?.remove();
   }
 
   async complete() {
@@ -96,7 +96,7 @@ class Onboarding {
 
   render() {
     // 移除旧弹窗
-    document.getElementById('onboarding-modal')?.remove();
+    document.getElementById("onboarding-modal")?.remove();
 
     const current = this.steps[this.step];
     const progress = ((this.step + 1) / this.steps.length) * 100;
@@ -117,35 +117,45 @@ class Onboarding {
           </div>
 
           <div class="onboarding-footer">
-            <button class="onboarding-btn onboarding-btn-secondary" id="onboarding-prev" ${this.step === 0 ? 'disabled' : ''}>
+            <button class="onboarding-btn onboarding-btn-secondary" id="onboarding-prev" ${this.step === 0 ? "disabled" : ""}>
               上一步
             </button>
             <div class="onboarding-dots">
-              ${this.steps.map((_, i) => `
-                <span class="onboarding-dot ${i === this.step ? 'active' : ''}"></span>
-              `).join('')}
+              ${this.steps
+                .map(
+                  (_, i) => `
+                <span class="onboarding-dot ${i === this.step ? "active" : ""}"></span>
+              `,
+                )
+                .join("")}
             </div>
             <button class="onboarding-btn onboarding-btn-primary" id="onboarding-next">
-              ${this.step === this.steps.length - 1 ? '完成' : '下一步'}
+              ${this.step === this.steps.length - 1 ? "完成" : "下一步"}
             </button>
           </div>
         </div>
       </div>
     `;
 
-    document.body.insertAdjacentHTML('beforeend', html);
+    document.body.insertAdjacentHTML("beforeend", html);
 
     // 绑定事件
-    document.getElementById('onboarding-skip')?.addEventListener('click', () => this.complete());
-    document.getElementById('onboarding-prev')?.addEventListener('click', () => this.prev());
-    document.getElementById('onboarding-next')?.addEventListener('click', () => this.next());
+    document
+      .getElementById("onboarding-skip")
+      ?.addEventListener("click", () => this.complete());
+    document
+      .getElementById("onboarding-prev")
+      ?.addEventListener("click", () => this.prev());
+    document
+      .getElementById("onboarding-next")
+      ?.addEventListener("click", () => this.next());
 
     // 键盘导航
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener("keydown", (e) => {
       if (!this.isOpen) return;
-      if (e.key === 'ArrowRight') this.next();
-      if (e.key === 'ArrowLeft') this.prev();
-      if (e.key === 'Escape') this.complete();
+      if (e.key === "ArrowRight") this.next();
+      if (e.key === "ArrowLeft") this.prev();
+      if (e.key === "Escape") this.complete();
     });
   }
 

@@ -15,7 +15,7 @@ class SetupWizard {
 
   async loadSettings() {
     try {
-      const data = await browser.storage.local.get('settings');
+      const data = await browser.storage.local.get("settings");
       this.settings = data.settings || this.getDefaults();
     } catch (e) {
       this.settings = this.getDefaults();
@@ -24,13 +24,13 @@ class SetupWizard {
 
   getDefaults() {
     return {
-      apiEndpoint: 'http://localhost:4000',
-      apiKey: '',
+      apiEndpoint: "http://localhost:4000",
+      apiKey: "",
       autoConnect: true,
-      theme: 'dark',
+      theme: "dark",
       notifications: true,
       maxHistory: 100,
-      autoClean: true
+      autoClean: true,
     };
   }
 
@@ -44,7 +44,7 @@ class SetupWizard {
 
   close() {
     this.isOpen = false;
-    document.getElementById('setup-wizard')?.remove();
+    document.getElementById("setup-wizard")?.remove();
   }
 
   next() {
@@ -67,10 +67,12 @@ class SetupWizard {
     try {
       // 验证 API 连接
       const status = new window.StatusIndicator();
-      const isConnected = await status.checkConnection(this.settings.apiEndpoint);
+      const isConnected = await status.checkConnection(
+        this.settings.apiEndpoint,
+      );
 
       if (!isConnected) {
-        alert('无法连接到 API，请检查地址是否正确');
+        alert("无法连接到 API，请检查地址是否正确");
         return;
       }
 
@@ -78,12 +80,14 @@ class SetupWizard {
       this.close();
 
       // 显示成功提示
-      window.dispatchEvent(new CustomEvent('settings:saved', {
-        detail: this.settings
-      }));
+      window.dispatchEvent(
+        new CustomEvent("settings:saved", {
+          detail: this.settings,
+        }),
+      );
     } catch (e) {
-      console.error('保存设置失败:', e);
-      alert('保存设置失败: ' + e.message);
+      console.error("保存设置失败:", e);
+      alert("保存设置失败: " + e.message);
     }
   }
 
@@ -96,24 +100,24 @@ class SetupWizard {
     const status = new window.StatusIndicator();
     const result = await status.checkConnection(endpoint);
 
-    const resultEl = document.getElementById('connection-test-result');
+    const resultEl = document.getElementById("connection-test-result");
     if (resultEl) {
-      resultEl.textContent = result ? '✅ 连接成功!' : '❌ 连接失败';
-      resultEl.className = result ? 'success' : 'error';
+      resultEl.textContent = result ? "✅ 连接成功!" : "❌ 连接失败";
+      resultEl.className = result ? "success" : "error";
     }
     return result;
   }
 
   render() {
-    document.getElementById('setup-wizard')?.remove();
+    document.getElementById("setup-wizard")?.remove();
 
     const stepContent = [
       this.renderStep1_API(),
       this.renderStep2_Appearance(),
-      this.renderStep3_Review()
+      this.renderStep3_Review(),
     ][this.step];
 
-    const titles = ['API 配置', '外观设置', '确认完成'];
+    const titles = ["API 配置", "外观设置", "确认完成"];
     const progress = ((this.step + 1) / 3) * 100;
 
     const html = `
@@ -130,38 +134,46 @@ class SetupWizard {
           ${stepContent}
 
           <div class="onboarding-footer">
-            <button class="onboarding-btn onboarding-btn-secondary" id="setup-prev" ${this.step === 0 ? 'disabled' : ''}>
+            <button class="onboarding-btn onboarding-btn-secondary" id="setup-prev" ${this.step === 0 ? "disabled" : ""}>
               上一步
             </button>
             <span class="setup-step-text">${this.step + 1} / 3</span>
             <button class="onboarding-btn onboarding-btn-primary" id="setup-next">
-              ${this.step === 2 ? '保存并完成' : '下一步'}
+              ${this.step === 2 ? "保存并完成" : "下一步"}
             </button>
           </div>
         </div>
       </div>
     `;
 
-    document.body.insertAdjacentHTML('beforeend', html);
+    document.body.insertAdjacentHTML("beforeend", html);
 
     // 绑定事件
-    document.getElementById('setup-close')?.addEventListener('click', () => this.close());
-    document.getElementById('setup-prev')?.addEventListener('click', () => this.prev());
-    document.getElementById('setup-next')?.addEventListener('click', () => this.next());
+    document
+      .getElementById("setup-close")
+      ?.addEventListener("click", () => this.close());
+    document
+      .getElementById("setup-prev")
+      ?.addEventListener("click", () => this.prev());
+    document
+      .getElementById("setup-next")
+      ?.addEventListener("click", () => this.next());
 
     // 绑定输入事件
-    document.getElementById('api-endpoint')?.addEventListener('input', (e) => {
-      this.updateSetting('apiEndpoint', e.target.value);
+    document.getElementById("api-endpoint")?.addEventListener("input", (e) => {
+      this.updateSetting("apiEndpoint", e.target.value);
     });
-    document.getElementById('api-key')?.addEventListener('input', (e) => {
-      this.updateSetting('apiKey', e.target.value);
+    document.getElementById("api-key")?.addEventListener("input", (e) => {
+      this.updateSetting("apiKey", e.target.value);
     });
-    document.getElementById('theme-select')?.addEventListener('change', (e) => {
-      this.updateSetting('theme', e.target.value);
+    document.getElementById("theme-select")?.addEventListener("change", (e) => {
+      this.updateSetting("theme", e.target.value);
     });
-    document.getElementById('test-connection')?.addEventListener('click', () => {
-      this.testConnection();
-    });
+    document
+      .getElementById("test-connection")
+      ?.addEventListener("click", () => {
+        this.testConnection();
+      });
   }
 
   renderStep1_API() {
@@ -193,16 +205,16 @@ class SetupWizard {
         <div class="setup-field">
           <label>主题</label>
           <select id="theme-select">
-            <option value="dark" ${this.settings.theme === 'dark' ? 'selected' : ''}>深色主题</option>
-            <option value="light" ${this.settings.theme === 'light' ? 'selected' : ''}>浅色主题</option>
-            <option value="auto" ${this.settings.theme === 'auto' ? 'selected' : ''}>跟随系统</option>
+            <option value="dark" ${this.settings.theme === "dark" ? "selected" : ""}>深色主题</option>
+            <option value="light" ${this.settings.theme === "light" ? "selected" : ""}>浅色主题</option>
+            <option value="auto" ${this.settings.theme === "auto" ? "selected" : ""}>跟随系统</option>
           </select>
         </div>
 
         <div class="setup-field">
           <label>通知</label>
           <label class="setup-toggle">
-            <input type="checkbox" id="notifications" ${this.settings.notifications ? 'checked' : ''} />
+            <input type="checkbox" id="notifications" ${this.settings.notifications ? "checked" : ""} />
             <span class="toggle-slider"></span>
             <span>启用消息通知</span>
           </label>
@@ -211,10 +223,10 @@ class SetupWizard {
         <div class="setup-field">
           <label>历史记录保留</label>
           <select id="max-history">
-            <option value="50" ${this.settings.maxHistory === 50 ? 'selected' : ''}>50 条</option>
-            <option value="100" ${this.settings.maxHistory === 100 ? 'selected' : ''}>100 条</option>
-            <option value="200" ${this.settings.maxHistory === 200 ? 'selected' : ''}>200 条</option>
-            <option value="500" ${this.settings.maxHistory === 500 ? 'selected' : ''}>500 条</option>
+            <option value="50" ${this.settings.maxHistory === 50 ? "selected" : ""}>50 条</option>
+            <option value="100" ${this.settings.maxHistory === 100 ? "selected" : ""}>100 条</option>
+            <option value="200" ${this.settings.maxHistory === 200 ? "selected" : ""}>200 条</option>
+            <option value="500" ${this.settings.maxHistory === 500 ? "selected" : ""}>500 条</option>
           </select>
         </div>
       </div>
@@ -232,11 +244,11 @@ class SetupWizard {
           </div>
           <div class="setup-review-item">
             <span>主题:</span>
-            <strong>${this.settings.theme === 'dark' ? '深色' : this.settings.theme === 'light' ? '浅色' : '自动'}</strong>
+            <strong>${this.settings.theme === "dark" ? "深色" : this.settings.theme === "light" ? "浅色" : "自动"}</strong>
           </div>
           <div class="setup-review-item">
             <span>通知:</span>
-            <strong>${this.settings.notifications ? '开启' : '关闭'}</strong>
+            <strong>${this.settings.notifications ? "开启" : "关闭"}</strong>
           </div>
           <div class="setup-review-item">
             <span>历史记录:</span>

@@ -10,10 +10,13 @@ class AnimationManager {
   }
 
   init() {
-    this.addKeyframes('pulse', `
+    this.addKeyframes(
+      "pulse",
+      `
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
-    `);
+    `,
+    );
   }
 
   /**
@@ -22,8 +25,8 @@ class AnimationManager {
    * @param {number} [duration=300] - 动画时长(ms)
    */
   fadeIn(element, duration = 300) {
-    element.style.opacity = '0';
-    element.style.display = '';
+    element.style.opacity = "0";
+    element.style.display = "";
 
     let start = null;
     const animate = (timestamp) => {
@@ -60,7 +63,7 @@ class AnimationManager {
       if (progress < duration) {
         requestAnimationFrame(animate);
       } else {
-        element.style.display = 'none';
+        element.style.display = "none";
       }
     };
 
@@ -73,23 +76,23 @@ class AnimationManager {
    * @param {string} [direction='left'] - 方向 left/right/up/down
    * @param {number} [duration=300] - 动画时长(ms)
    */
-  slideIn(element, direction = 'left', duration = 300) {
+  slideIn(element, direction = "left", duration = 300) {
     const transforms = {
-      left: 'translateX(-100%)',
-      right: 'translateX(100%)',
-      up: 'translateY(-100%)',
-      down: 'translateY(100%)'
+      left: "translateX(-100%)",
+      right: "translateX(100%)",
+      up: "translateY(-100%)",
+      down: "translateY(100%)",
     };
 
-    element.style.transition = 'none';
+    element.style.transition = "none";
     element.style.transform = transforms[direction];
-    element.style.display = '';
+    element.style.display = "";
 
     // 强制重绘
     element.offsetHeight;
 
     element.style.transition = `transform ${duration}ms ease-out`;
-    element.style.transform = 'translateX(0)';
+    element.style.transform = "translateX(0)";
   }
 
   /**
@@ -103,7 +106,7 @@ class AnimationManager {
     element.style.transform = `scale(${scale})`;
 
     setTimeout(() => {
-      element.style.transform = 'scale(1)';
+      element.style.transform = "scale(1)";
     }, duration);
   }
 
@@ -123,7 +126,7 @@ class AnimationManager {
    * @param {number} [speed=50] - 每个字符的间隔(ms)
    */
   typeWriter(element, text, speed = 50) {
-    element.textContent = '';
+    element.textContent = "";
     let i = 0;
 
     const type = () => {
@@ -143,7 +146,7 @@ class AnimationManager {
    * @param {string} keyframes - 关键帧定义
    */
   addKeyframes(name, keyframes) {
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
       @keyframes ${name} {
         ${keyframes}
@@ -154,7 +157,7 @@ class AnimationManager {
 }
 
 // 导出
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = { AnimationManager };
 } else {
   window.AnimationManager = AnimationManager;

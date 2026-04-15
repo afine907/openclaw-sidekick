@@ -180,7 +180,7 @@
   margin: 0;
   padding: 16px;
   overflow-x: auto;
-  font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace;
+  font-family: "SF Mono", "Monaco", "Menlo", "Consolas", monospace;
   font-size: 13px;
   line-height: 1.6;
   color: #d4d4d4;
@@ -760,10 +760,18 @@
   font-size: 10px;
 }
 
-.log-level.debug { color: #666; }
-.log-level.info { color: #2196f3; }
-.log-level.warn { color: #ff9800; }
-.log-level.error { color: #f44336; }
+.log-level.debug {
+  color: #666;
+}
+.log-level.info {
+  color: #2196f3;
+}
+.log-level.warn {
+  color: #ff9800;
+}
+.log-level.error {
+  color: #f44336;
+}
 
 .log-message {
   color: #aaa;
@@ -819,10 +827,22 @@
   font-weight: bold;
 }
 
-.request-method.get { background: #2196f3; color: white; }
-.request-method.post { background: #4caf50; color: white; }
-.request-method.put { background: #ff9800; color: white; }
-.request-method.delete { background: #f44336; color: white; }
+.request-method.get {
+  background: #2196f3;
+  color: white;
+}
+.request-method.post {
+  background: #4caf50;
+  color: white;
+}
+.request-method.put {
+  background: #ff9800;
+  color: white;
+}
+.request-method.delete {
+  background: #f44336;
+  color: white;
+}
 
 .request-url {
   flex: 1;
@@ -838,9 +858,18 @@
   font-size: 10px;
 }
 
-.request-status.success { background: #1b5e20; color: #81c784; }
-.request-status.error { background: #b71c1c; color: #ef9a9a; }
-.request-status.pending { background: #333; color: #888; }
+.request-status.success {
+  background: #1b5e20;
+  color: #81c784;
+}
+.request-status.error {
+  background: #b71c1c;
+  color: #ef9a9a;
+}
+.request-status.pending {
+  background: #333;
+  color: #888;
+}
 
 .request-duration {
   color: #666;
