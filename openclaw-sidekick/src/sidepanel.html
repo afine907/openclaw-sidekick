@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw Sidekick</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="header">
+      <h1>OpenClaw Sidekick</h1>
+      <button id="settings-btn" class="icon-btn" title="设置">
+        ⚙️
+      </button>
+    </header>
+
+    <!-- Settings Panel (hidden by default) -->
+    <div id="settings-panel" class="settings-panel hidden">
+      <div class="setting-item">
+        <label for="server-url">OpenClaw 地址</label>
+        <input type="text" id="server-url" placeholder="http://localhost:4000">
+      </div>
+      <div class="setting-item">
+        <label for="api-key">API Key (可选)</label>
+        <input type="password" id="api-key" placeholder="留空使用默认 Key">
+      </div>
+      <button id="save-settings" class="btn-primary">保存设置</button>
+      <button id="clear-history" class="btn-secondary">清空对话历史</button>
+    </div>
+
+    <!-- Messages Container -->
+    <div id="messages" class="messages">
+      <!-- Messages will be rendered here -->
+    </div>
+
+    <!-- Quick paste area -->
+    <div id="paste-zone" class="paste-zone">
+      <span>粘贴图片或文字 (Ctrl+V)</span>
+    </div>
+
+    <!-- Input Area -->
+    <div class="input-area">
+      <textarea id="input" placeholder="输入消息..." rows="3"></textarea>
+      <button id="send-btn" class="btn-send">发送</button>
+    </div>
+  </div>
+
+  <script src="sidepanel.js" type="module"></script>
+</body>
+</html>
