@@ -1,12 +1,17 @@
 {
   "name": "openclaw-sidekick",
   "version": "0.2.0",
-  "description": "OpenClaw AI Assistant in browser sidebar - 选中文字快速发送，不离开当前页面",
+  "type": "module",
+  "description": "OpenClaw AI Assistant in browser sidebar",
   "main": "src/background.js",
   "scripts": {
     "test": "vitest",
     "test:run": "vitest run",
     "test:ui": "vitest --ui",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:all": "npm run test:run && npm run test:e2e",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "format": "prettier --write src/**/*.{js,html,css}",
@@ -22,8 +27,11 @@
   "author": "OpenClaw Team",
   "license": "MIT",
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "eslint": "^8.0.0",
+    "http-server": "^14.1.1",
     "jsdom": "^29.0.2",
+    "playwright": "^1.59.1",
     "prettier": "^3.0.0",
     "vitest": "^4.1.4"
   },

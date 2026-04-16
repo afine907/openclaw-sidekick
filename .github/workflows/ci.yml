@@ -29,11 +29,17 @@ jobs:
       - name: 🔍 Run ESLint
         run: npm run lint
 
-      - name: 🧪 Run tests
+      - name: 🧪 Run unit tests
         run: npm test
 
       - name: 📏 Check code format
         run: npx prettier --check src/**/*.{js,html,css}
+
+      - name: 🏗️ Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: 🚀 Run E2E tests
+        run: npm run test:e2e
 
   build:
     name: 📦 Build
