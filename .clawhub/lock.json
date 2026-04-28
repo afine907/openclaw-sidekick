@@ -8,6 +8,54 @@
     "proactive-agent": {
       "version": "3.1.0",
       "installedAt": 1775012281317
+    },
+    "baidu-search": {
+      "version": "1.1.4",
+      "installedAt": 1776601408363
+    },
+    "capability-evolver-pro": {
+      "version": "1.0.2",
+      "installedAt": 1776987238682
+    },
+    "gog": {
+      "version": "1.0.0",
+      "installedAt": 1776987306332
+    },
+    "github": {
+      "version": "1.0.0",
+      "installedAt": 1776987306392
+    },
+    "mcp-skill": {
+      "version": "1.0.0",
+      "installedAt": 1776988439670
+    },
+    "security-auditor": {
+      "version": "1.0.0",
+      "installedAt": 1776988439992
+    },
+    "automation-workflows": {
+      "version": "0.1.0",
+      "installedAt": 1776988440055
+    },
+    "multi-search-engine-simple": {
+      "version": "1.0.0",
+      "installedAt": 1776988440374
+    },
+    "database-designer": {
+      "version": "2.1.1",
+      "installedAt": 1776988442019
+    },
+    "git-essentials": {
+      "version": "1.0.0",
+      "installedAt": 1776989749065
+    },
+    "test-runner": {
+      "version": "1.0.0",
+      "installedAt": 1776989749696
+    },
+    "code-review1": {
+      "version": "1.0.0",
+      "installedAt": 1776989758140
     }
   }
 }

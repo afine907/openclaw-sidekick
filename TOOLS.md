@@ -2,39 +2,49 @@
 
 Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
 
-## What Goes Here
+## Coding Agent 默认设置
 
-Things like:
+- **Agent**: Claude Code
+- **权限**: --permission-mode bypassPermissions (默认允许所有权限)
+- **用法**: 使用 sessions_spawn 发起 Claude Code 任务时，加上这些参数
 
-- Camera names and locations
-- SSH hosts and aliases
-- Preferred voices for TTS
-- Speaker/room names
-- Device nicknames
-- Anything environment-specific
+## OpenCode (免费 Coding Agent)
 
-## Examples
+- **版本**: 1.14.17
+- **安装**: `curl -fsSL https://opencode.ai/install | bash`
+- **用法**: `cd <项目> && opencode`
+- **免费模型**:
+  - `opencode/big-pickle`
+  - `opencode/gpt-5-nano`
+  - `opencode/minimax-m2.5-free`
+  - `opencode/nemotron-3-super-free`
+- **指定模型**: `opencode -m opencode/gpt-5-nano`
+- **单次运行**: `opencode run "帮我写个函数"`
 
-```markdown
-### Cameras
+**省 token 策略**: 代码任务优先用 OpenCode 的免费模型，节省当前会话 token
 
-- living-room → Main area, 180° wide angle
-- front-door → Entrance, motion-triggered
+## 联网搜索
 
-### SSH
+- 只要联网搜索，优先使用 searxng skill
 
-- home-server → 192.168.1.100, user: admin
+## OCR 图片识别
 
-### TTS
+- **Skill**: `~/.openclaw/workspace/skills/ocr/SKILL.md`
+- **工具**: Tesseract 4.1.1 + 中文 (chi_sim) + 英文 (eng)
+- **用法**: `tesseract <图片路径> stdout -l chi_sim+eng`
+- **场景**: 模型不支持图片时，用 OCR 提取文字
 
-- Preferred voice: "Nova" (warm, slightly British)
-- Default speaker: Kitchen HomePod
-```
+## 代码提交原则
 
-## Why Separate?
+**提交 PR 之前必须先检查项目的 CI 配置，执行相应的检查命令。**
 
-Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
+步骤：
+1. 读取 `.github/workflows/ci.yml` 或类似的 CI 配置文件
+2. 找出 CI 中定义的检查步骤（lint、format、test、type check 等)
+3. 本地执行这些检查，全部通过后再提交
 
----
+**经验教训**: 之前只运行了部分检查，漏掉了 `ruff format --check`，导致 CI 失败。必须完整模拟 CI 流程！
 
-Add whatever helps you do your job. This is your cheat sheet.
+## GitHub Token
+- Token: ${GH_TOKEN}
+- 用途: 推送代码到 GitHub 仓库
