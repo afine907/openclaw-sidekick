@@ -3,7 +3,7 @@
   "skills": {
     "skill-vetter": {
       "version": "1.0.0",
-      "installedAt": 1775012233768
+      "installedAt": 1777598400856
     },
     "proactive-agent": {
       "version": "3.1.0",
@@ -56,6 +56,74 @@
     "code-review1": {
       "version": "1.0.0",
       "installedAt": 1776989758140
+    },
+    "summarize-pro": {
+      "version": "1.0.0",
+      "installedAt": 1777567200916
+    },
+    "agent-browser-clawdbot": {
+      "version": "0.1.0",
+      "installedAt": 1777567200977
+    },
+    "self-improving": {
+      "version": "1.2.16",
+      "installedAt": 1777598582022
+    },
+    "proactivity": {
+      "version": "1.0.1",
+      "installedAt": 1777598770896
+    },
+    "chrome-devtools-mcp": {
+      "version": "1.0.0",
+      "installedAt": 1777599061649
+    },
+    "xiaohongshu-mcp-skill": {
+      "version": "1.0.0",
+      "installedAt": 1777599061696
+    },
+    "youtube-api-skill": {
+      "version": "1.0.4",
+      "installedAt": 1777600501149
+    },
+    "youtube-watcher": {
+      "version": "1.0.0",
+      "installedAt": 1777600501167
+    },
+    "ontology": {
+      "version": "1.0.4",
+      "installedAt": 1777601161093
+    },
+    "humanizer": {
+      "version": "1.0.0",
+      "installedAt": 1777601162425
+    },
+    "nano-pdf": {
+      "version": "1.0.0",
+      "installedAt": 1777601163733
+    },
+    "skill-creator": {
+      "version": "0.1.0",
+      "installedAt": 1777601165329
+    },
+    "word-docx": {
+      "version": "1.0.2",
+      "installedAt": 1777601166524
+    },
+    "excel-xlsx": {
+      "version": "1.0.2",
+      "installedAt": 1777601221200
+    },
+    "video-frames": {
+      "version": "1.0.0",
+      "installedAt": 1777601222533
+    },
+    "find-skills-skill": {
+      "version": "1.0.0",
+      "installedAt": 1777601224267
+    },
+    "clawddocs": {
+      "version": "1.2.2",
+      "installedAt": 1777601226377
     }
   }
 }

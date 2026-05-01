@@ -84,7 +84,7 @@
 - 仓库：`afine907/afine907.github.io`
 - 文章路径：`docs/articles/ai/`
 - Skill 路径：`~/.openclaw/workspace/skills/tech-writer/SKILL.md`
-- GitHub Token: `${GH_TOKEN}`
+- GitHub Token: 环境变量 `GH_TOKEN`
 
 ---
 

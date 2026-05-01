@@ -1,0 +1,10 @@
+[
+  {
+    "name": "web_session",
+    "value": "0400698f6f54ae5603a390b3c63b4befb4a129",
+    "domain": ".xiaohongshu.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false
+  }
+]

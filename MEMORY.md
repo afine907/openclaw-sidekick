@@ -106,5 +106,5 @@ uv run jojo-code
 **经验教训**: 之前只运行了部分检查，漏掉了 `ruff format --check`，导致 CI 失败。必须完整模拟 CI 流程！
 
 ## GitHub Token
-- Token: ${GH_TOKEN}
+- Token: 环境变量 `GH_TOKEN` 或 `GITHUB_TOKEN`
 - 用途: 推送代码到 GitHub 仓库

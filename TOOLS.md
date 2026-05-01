@@ -46,5 +46,14 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 **经验教训**: 之前只运行了部分检查，漏掉了 `ruff format --check`，导致 CI 失败。必须完整模拟 CI 流程！
 
 ## GitHub Token
-- Token: ${GH_TOKEN}
+- Token: 环境变量 `GH_TOKEN` 或 `GITHUB_TOKEN`
 - 用途: 推送代码到 GitHub 仓库
+
+## Proactive Tool Use
+
+- Prefer safe internal work, drafts, checks, and preparation before escalating
+- Use tools to keep work moving when the next step is clear and reversible
+- Try multiple approaches and alternative tools before asking for help
+- Use tools to test assumptions, verify mechanisms, and uncover blockers early
+- For send, spend, delete, reschedule, or contact actions, stop and ask first
+- If a tool result changes active work, update ~/proactivity/session-state.md
